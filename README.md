@@ -1,4 +1,6 @@
-# React + TypeScript + Vite
+# Hybrid Apps - React example
+
+Open [this link in browser](https://users.metropolia.fi/~ellenj/hybrid-week3/) to see the app in action.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -22,7 +24,7 @@ export default {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
