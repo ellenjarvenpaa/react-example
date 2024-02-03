@@ -4,26 +4,19 @@ const Layout = () => {
   return (
     <>
       <header>
-        <h1>My app</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/upload">Upload</Link>
-            </li>
-          </ul>
-        </nav>
+            <p>
+              <Link className="home" to="/">Search</Link>
+            </p>
+        <h1 className="title">Rate <br /> My <br /> Outfit</h1>
+            <p>
+              <Link className="profile" to="/profile">Profile</Link>
+            </p>
       </header>
       <main>
         <Outlet />
       </main>
       <footer>
-        <p>Copyright 2024 - NN</p>
+        <p>Copyright 2024 - EJ</p>
       </footer>
     </>
   );

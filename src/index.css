@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #E1D0D0;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,18 +19,33 @@
   padding: 2rem;
 }
 
-/* nav */
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-  display: flex;
-  justify-content: flex-end;
+/* header */
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-nav a {
+.title {
+  text-align: center;
+  color: black;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.home {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  margin: 50px;
+}
+
+.profile {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  margin: 50px;
+}
+
+a {
   display: block;
   color: white;
   text-align: center;
@@ -38,8 +53,21 @@ nav a {
   text-decoration: none;
 }
 
-nav a:hover {
+a:hover {
   background-color: #111111;
+}
+
+/* main */
+
+table {
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.user_photo {
+  height: 800px;
+  width: 600px;
 }
 
 /* media item card */
@@ -130,4 +158,8 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+}
+
+footer {
+  text-align: center;
 }

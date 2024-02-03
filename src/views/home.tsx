@@ -1,5 +1,6 @@
 import {MediaItem} from '../types/DBtypes';
 import MediaRow from '../components/mediaRow';
+import UserInfo from '../components/userInfo';
 
 const Home = () => {
   const mediaArray: MediaItem[] = [
@@ -42,17 +43,14 @@ const Home = () => {
 
   return (
     <>
-      <h2>My Media</h2>
       <table>
         <thead>
-          <tr>
-            <th>Thumbnail</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created</th>
-            <th>Size</th>
-            <th>Type</th>
-          </tr>
+          {mediaArray.map((item) => (
+            <UserInfo
+              key={item.user_id}
+              item={item}
+              />
+          ))}
         </thead>
         <tbody>
           {mediaArray.map((item) => (
