@@ -11,6 +11,12 @@ const Layout = () => {
             <p>
               <Link className="profile" to="/profile">Profile</Link>
             </p>
+            <p>
+              <Link to="/login">Login</Link>
+            </p>
+            <p>
+              <Link to="/logout">Logout</Link>
+            </p>
       </header>
       <main>
         <Outlet />
