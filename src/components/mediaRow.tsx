@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import {MediaItem} from '../types/DBtypes';
+import { MediaItemWithOwner} from '../types/DBtypes';
 
 const MediaRow = (props: {
-  item: MediaItem;
+  item: MediaItemWithOwner;
 }) => {
   const {item}  = props;
 
@@ -10,6 +10,9 @@ const MediaRow = (props: {
     <tr className="media-row">
       <td className="user_photo">
         <img className="user_photo"src={item.thumbnail} alt={item.title} />
+      </td>
+      <td>
+        {item.username}
       </td>
       <td>
         <Link to="/single" state={item}>View</Link>
