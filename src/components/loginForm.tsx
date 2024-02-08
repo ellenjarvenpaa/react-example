@@ -1,14 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../hooks/apiHooks";
 import useForm from "../hooks/formHooks";
 import { Credentials } from "../types/LocalTypes";
 
 const LoginForm = () => {
   const {postLogin} = useAuthentication();
-  const initValues:Credentials = {username: '', password: ''}
-  const {handleSubmit, handleInputChange, inputs} = useForm(async ()=>{
-    console.log(inputs);
-    await postLogin(inputs);
-  }, initValues);
+  const navigate = useNavigate();
+
+  const initValues: Credentials = {username: '', password: ''};
+
+  const doLogin = async () => {
+    console.log('submit callback, inputs:', inputs);
+    // TODO: use postLogin to authenticate with server
+    const loginResult = await postLogin(inputs as Credentials);
+    if (loginResult) {
+    localStorage.setItem('token', loginResult.token);
+    navigate('/');
+    }
+  };
+
+  const {handleSubmit, handleInputChange, inputs} = useForm(
+    doLogin,
+    initValues,
+  );
+
   return (
       <>
           <h1>Login</h1>
