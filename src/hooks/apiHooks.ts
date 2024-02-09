@@ -1,21 +1,30 @@
-import { useEffect, useState } from "react";
-import { MediaItem, MediaItemWithOwner, User } from "../types/DBtypes";
-import { fetchData } from "../lib/functions";
-import { LoginResponse, UserResponse } from "../types/MessageTypes";
-import { Credentials } from "../types/LocalTypes";
+import {useEffect, useState} from 'react';
+import {MediaItem, MediaItemWithOwner, User} from '../types/DBtypes';
+import {fetchData} from '../lib/functions';
+import {Credentials} from '../types/LocalTypes';
+import {LoginResponse, UserResponse} from '../types/MessageTypes';
 
 const useMedia = (): MediaItemWithOwner[] => {
   const [mediaArray, setMediaArray] = useState<MediaItemWithOwner[]>([]);
 
   const getMedia = async () => {
     try {
-      const mediaItems = await fetchData<MediaItem[]>(import.meta.env.VITE_MEDIA_API + '/media');
+      const mediaItems = await fetchData<MediaItem[]>(
+        import.meta.env.VITE_MEDIA_API + '/media',
+      );
       // Get usernames (file owners) for all media files from auth api
-      const itemsWithOwner: MediaItemWithOwner[] = await Promise.all(mediaItems.map(async (item) => {
-        const owner = await fetchData<User>(import.meta.env.VITE_AUTH_API + '/users/' + item.user_id);
-        const itemWithOwner: MediaItemWithOwner = {...item, username: owner.username};
-        return itemWithOwner;
-      }));
+      const itemsWithOwner: MediaItemWithOwner[] = await Promise.all(
+        mediaItems.map(async (item) => {
+          const owner = await fetchData<User>(
+            import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
+          );
+          const itemWithOwner: MediaItemWithOwner = {
+            ...item,
+            username: owner.username,
+          };
+          return itemWithOwner;
+        }),
+      );
       setMediaArray(itemsWithOwner);
       console.log('mediaArray updated:', itemsWithOwner);
     } catch (error) {
@@ -23,14 +32,15 @@ const useMedia = (): MediaItemWithOwner[] => {
     }
   };
 
-  useEffect(()=>{
-    getMedia
+  useEffect(() => {
+    getMedia();
   }, []);
 
   return mediaArray;
-}
+};
 
 const useUser = () => {
+  // TODO: implement network functions for auth server user endpoints
   const getUserByToken = async (token: string) => {
     const options = {
       headers: {
@@ -38,11 +48,27 @@ const useUser = () => {
       },
     };
     return await fetchData<UserResponse>(
-      import.meta.env.VITE_AUTH_API + 'users/token/',
-      options
+      import.meta.env.VITE_AUTH_API + '/users/token/',
+      options,
     );
   };
-  return {getUserByToken};
+
+  const postUser = async (user: Record<string, string>) => {
+    const options: RequestInit = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    };
+
+    await fetchData<UserResponse>(
+      import.meta.env.VITE_AUTH_API + '/users',
+      options,
+    );
+  };
+
+  return {getUserByToken, postUser};
 };
 
 const useAuthentication = () => {
