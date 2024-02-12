@@ -11,7 +11,7 @@ const MediaRow = (props: {
       <td className="user_photo">
         <img className="user_photo"src={item.thumbnail} alt={item.title} />
       </td>
-      <td>
+      <td className="username">
         {item.username}
       </td>
       <td>

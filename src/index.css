@@ -53,10 +53,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  background-color: #111111;
-}
-
 /* main */
 
 table {
@@ -66,8 +62,12 @@ table {
 }
 
 .user_photo {
-  height: 800px;
+  height: 600px;
   width: 600px;
+}
+
+.media-row {
+  display: grid;
 }
 
 /* media item card */
@@ -83,16 +83,17 @@ td img {
 
 td button:hover,
 a:hover {
-  background-color: #111111;
+  transform: scale(1.2);
 }
 
 td a {
   color: white;
   text-decoration: none;
-  background-color: #363636;
+  background-color: palevioletred;
   color: white;
-  border: none;
+  border-radius: 5px;
   padding: 0.5rem;
+  width: 75px;
 }
 
 /* media item dialog */
@@ -154,10 +155,14 @@ button {
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
-  background-color: #363636;
+  background-color: palevioletred;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.2);
 }
 
 footer {
