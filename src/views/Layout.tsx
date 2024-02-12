@@ -13,17 +13,13 @@ const Layout = () => {
     <>
       <header>
             <p>
-              <Link className="home" to="/">Search</Link>
+              <Link className="home" to="/login">Login</Link>
             </p>
-        <h1 className="title">Rate <br /> My <br /> Outfit</h1>
+            <h1 className="title">
+              <Link to="/">Rate <br /> My <br /> OOTD</Link>
+            </h1>
             <p>
               <Link className="profile" to="/profile">Profile</Link>
-            </p>
-            <p>
-              <Link to="/login">Login</Link>
-            </p>
-            <p>
-              <Link to="/logout">Logout</Link>
             </p>
       </header>
       <main>
