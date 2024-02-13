@@ -11,15 +11,15 @@ const Layout = () => {
 
   return (
     <>
-      <header>
+      <header className="flex justify-end bg-red-300">
             <p>
-              <Link className="home" to="/login">Login</Link>
+              <Link className="hover:scale-125 block text-center text-slate-50" to="/login">Login</Link>
             </p>
-            <h1 className="title">
+            <h1 className="block">
               <Link to="/">Rate <br /> My <br /> OOTD</Link>
             </h1>
             <p>
-              <Link className="profile" to="/profile">Profile</Link>
+              <Link className="block" to="/profile">Profile</Link>
             </p>
       </header>
       <main>

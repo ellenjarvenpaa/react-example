@@ -23,6 +23,7 @@ const LoginForm = () => {
                <div>
                    <label htmlFor="UserWithLevelname">Username</label>
                   <input
+                  className="text-slate-950"
                       name="username"
                       type="text"
                       id="UserWithLevelname"
@@ -33,6 +34,7 @@ const LoginForm = () => {
               <div>
                   <label htmlFor="loginpassword">Password</label>
                    <input
+                   className="text-slate-950"
                       name="password"
                       type="password"
                       id="loginpassword"
