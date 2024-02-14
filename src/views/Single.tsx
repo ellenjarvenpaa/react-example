@@ -1,5 +1,6 @@
 import {NavigateFunction, useLocation, useNavigate} from "react-router-dom";
 import { MediaItemWithOwner} from "../types/DBtypes";
+import Likes from "../components/likes";
 
 const Single = () => {
   const {state} = useLocation();
@@ -15,6 +16,7 @@ const Single = () => {
       ) : (
         <img src={item.filename} alt={item.title} />
       )}
+      <Likes item={item}/>
       <p>{item.description}</p>
       <p>Upoloaded at: {new Date(item.created_at).toLocaleString('fi-FI')}, by: {item.username}</p>
       <p>{item.filesize}</p>
