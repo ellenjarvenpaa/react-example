@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {Comment} from './types/DBtypes';
+import {Comment} from './types/DBTypes';
 
 type CommentWithUsername = Partial<Comment & {username: string}>;
 

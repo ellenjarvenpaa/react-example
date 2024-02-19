@@ -1,8 +1,10 @@
+// UserContext.tsx
 import React, {createContext, useState} from 'react';
 import {UserWithNoPassword} from '../types/DBtypes';
-import {useAuthentication, useUser} from '../hooks/apiHooks';
+// import {useAuthentication, useUser} from '../hooks/apiHooks';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {AuthContextType, Credentials} from '../types/LocalTypes';
+import {useAuthentication, useUser} from '../hooks/graphqlHooks';
 
 const UserContext = createContext<AuthContextType | null>(null);
 
@@ -17,11 +19,11 @@ const UserProvider = ({children}: {children: React.ReactNode}) => {
   const handleLogin = async (credentials: Credentials) => {
     try {
       const loginResult = await postLogin(credentials);
-    if (loginResult) {
-    localStorage.setItem('token', loginResult.token);
-    setUser(loginResult.user)
-    navigate('/');
-    }
+      if (loginResult) {
+        localStorage.setItem('token', loginResult.token);
+        setUser(loginResult.user);
+        navigate('/');
+      }
     } catch (e) {
       alert((e as Error).message);
     }
@@ -29,8 +31,11 @@ const UserProvider = ({children}: {children: React.ReactNode}) => {
 
   const handleLogout = () => {
     try {
+      // remove token from local storage
       localStorage.removeItem('token');
+      // set user to null
       setUser(null);
+      // navigate to home
       navigate('/');
     } catch (e) {
       console.log((e as Error).message);
@@ -40,10 +45,14 @@ const UserProvider = ({children}: {children: React.ReactNode}) => {
   // handleAutoLogin is used when the app is loaded to check if there is a valid token in local storage
   const handleAutoLogin = async () => {
     try {
+      // get token from local storage
       const token = localStorage.getItem('token');
       if (token) {
-        const userRespone = await getUserByToken(token);
-        setUser(userRespone.user);
+        // if token exists, get user data from API
+        const userResponse = await getUserByToken(token);
+        // set user to state
+        setUser(userResponse.user);
+        // when page is refreshed, the user is redirected to origin (see ProtectedRoute.tsx)
         const origin = location.state.from.pathname || '/';
         navigate(origin);
       }
