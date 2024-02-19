@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useForm from "../hooks/formHooks";
-import { useFile, useMedia } from "../hooks/apiHooks";
+import { useFile, useMedia } from "../hooks/graphqlHooks";
 import { useNavigate } from "react-router-dom";
 
 const Upload = () => {
