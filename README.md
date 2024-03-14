@@ -1,6 +1,6 @@
 # Hybrid Apps - React example
 
-Open [this link in browser](https://users.metropolia.fi/~ellenj/hybrid-week3/) to see the app in action.
+Open [this link in browser](https://users.metropolia.fi/~ellenj/hybrid-week2/) to see the app in action.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
